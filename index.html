@@ -1,94 +1,86 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <meta charset="UTF-8">
-    <title>Weather App - JavaScript</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="css/ionicons.min.css">
-  </head>
-  <body>
-      <header>Weather Dashboard</header>
-      <ul class="list-group">
-            <nav class="navbar navbar-light bg-light">
-              <h1>Search for a City:</h1>
-                    <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                  </nav>
-            <li class="list-group-item">Austin</li>
-            <li class="list-group-item">Chicago</li>
-            <li class="list-group-item">New York</li>
-            <li class="list-group-item">Orlando</li>
-            <li class="list-group-item">San Francisco</li>
-            <li class="list-group-item">Seattle</li>
-            <li class="list-group-item">Denver</li>
-            <li class="list-group-item">Atlanta</li>
-          </ul>
-      <div class="jumbotron">
-            <h1 class="display-4"></h1>
-
-            <p class="date">Date:</p>
-            <p class="temperature-value">Temperature:</p>
-            <p class="humidity">Humidity:</p>
-            <p class="wind-speed">Wind speed:</p>
-            <p class="uv-index">UV Index:</p>
-            <hr class="my-4">
-
-      
-            <p>5-Day Forecast:</p>
-            <div class="container">
-              <div class="forecast">
-                <p class="date">Date</p>
-                <i class="ion-android-sunny icons"></i>
-                <p class="temperature-value">Temp:</p>
-                <p class="humidity">Humidity:</p>
-              </div>
-            
-                <div class="forecast">
-                  <p class="date">Date</p>
-                  <i class="ion-android-sunny icons"></i>
-                  <p class="temperature-value">Temp:</p>
-                  <p class="humidity">Humidity:</p>
-                </div>
-              
-              
-                  <div class="forecast">
-                    <p class="date">Date</p>
-                    <i class="ion-android-sunny icons"></i>
-                    <p class="temperature-value">Temp:</p>
-                    <p class="humidity">Humidity:</p>
-                  </div>
-                
-               
-                    <div class="forecast">
-                      <p class="date">Date</p>
-                      <i class="ion-android-sunny icons"></i>
-                      <p class="temperature-value">Temp:</p>
-                      <p class="humidity">Humidity:</p>
-                    </div>
-                  
-                 
-                      <div class="forecast">
-                        <p class="date">Date</p>
-                        <i class="ion-android-sunny icons"></i>
-                        <p class="temperature-value">Temp:</p>
-                        <p class="humidity">Humidity:</p>
-                      </div>
-             </div>
-            
-        </div>
-        
-      
-         
-
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Weather Dashboard </title>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-   <script href="script.js"></script>
+  <script src="https://kit.fontawesome.com/3e9d289ac8.js" crossorigin="anonymous"></script>    
+  
+</head>
+
+<body >
+
+
+    
+
+<div class="sticky-top text-center bg-dark text-white p-4">
+    <h1 class=" font-weight-bold" id="main-title">Weather Dashboard</h1>
+</div>
+<div class="container-fluid">
+
+    <div class="row m-5">
+        
+        <div class=" col-lg-2 col-md-4 col-sm-6 col-xs-8" id="search-col">
+            
+            <div class="input-group my-3">
+                <input type="text" class="form-control"  onfocus="this.value='' " value="Enter a City" placeholder="Enter a City"  id="searchText" >
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" id="searchBtn"><i
+                            class="fa fa-search"></i></button> 
+                </div>
+                
+            </div>
+            
+            <div class="btn btn-primary" id="clearSearches"> <i class="fas fa-trash"></i> Clear Search                
+            </div>
+
+            <div class="row" id="searchMsg">
+            </div>            
+            <div class="btn" id="recentSearches">
+            </div>
+        </div>
+        <div class=" col-lg-8 col-md-8 col-sm-6 col-xs-6"  id="result-col">
+            <h4 class="mt-1 ml-2   p-2 ">Current Weather</h4>
+            <div class="row" id="currentWeatherDiv">
+                <div class="card text-white bg-primary m-3 w-100" >
+                    <div class="card-header font-weight-bold" id="currentWeatherHeader">Date</div>
+                    <div class="card-body">
+                        
+                        <p class="card-text" id="currentWeatherTemp">Temp</p>
+                        <p class="card-text" id="currentWeatherHum">Humidity</p>
+                        <p class="card-text" id="currentWeatherWind">Wind Speed</p>
+                        <p class="card-text font-weight-bold" id="currentWeatherUV">UV</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <h4 class=" mt-1 ml-2   p-2 ">Weather Forecast</h4>
+            <div class="row" id="forecastWeatherDiv">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<footer class="sticky-footer text-center bg-dark text-white">
+    <i class="fas fa-copyright"></i> <small>Copyright 2020, Anusha Odilzoda</small>
+</footer>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
+<script src='./assets/js/script.js'></script>
+  
+</body>
 </html>
