@@ -10,7 +10,8 @@ $(document).ready(function () {
   var currentWeatherWindEl = $("#currentWeatherWind");
   var currentWeatherUVEl = $("#currentWeatherUV");
   var forecastWeatherDivEl = $("#forecastWeatherDiv");
-
+  var currentWeatherUVEl = $("#currentWeatherUV");
+  var forecastWeatherDivEl = $("#forecastWeatherDiv");
 
   // this function loads the weatherSearches and lastSearch variables
   function loadWeatherSearches() {
